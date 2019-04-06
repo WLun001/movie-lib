@@ -14,6 +14,11 @@ class StudioCollection extends ResourceCollection
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'data' => StudioResource::collection($this->collection),
+            'meta' => [
+                'time' => date('U'),
+            ]
+        ];
     }
 }

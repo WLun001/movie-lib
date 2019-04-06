@@ -14,6 +14,11 @@ class MovieCollection extends ResourceCollection
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'data' => MovieResource::collection($this->collection),
+            'meta' => [
+                'time' => date('U'),
+            ]
+        ];
     }
 }
