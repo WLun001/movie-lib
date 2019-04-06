@@ -2,6 +2,8 @@
 
 namespace App\Http\Resources;
 
+use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class StudioCollection extends ResourceCollection
@@ -9,16 +11,11 @@ class StudioCollection extends ResourceCollection
     /**
      * Transform the resource collection into an array.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
+     * @param Request $request
+     * @return AnonymousResourceCollection
      */
     public function toArray($request)
     {
-        return [
-            'data' => StudioResource::collection($this->collection),
-            'meta' => [
-                'time' => date('U'),
-            ]
-        ];
+        return StudioResource::collection($this->collection);
     }
 }

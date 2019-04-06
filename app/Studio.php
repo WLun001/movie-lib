@@ -10,6 +10,6 @@ class Studio extends Model
 
     public function movies()
     {
-        $this->hasMany(Movie::class);
+        return $this->hasMany(Movie::class);
     }
 }

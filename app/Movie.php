@@ -10,7 +10,7 @@ class Movie extends Model
 
     public function studio()
     {
-        return $this->hasOne(Studio::class);
+        return $this->belongsTo(Studio::class);
     }
 
     public function actors()
