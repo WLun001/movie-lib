@@ -22,6 +22,29 @@ class StudioController extends Controller
         return new StudioCollection($studios);
     }
 
+    /**
+     * Search studios based on studio name or/and movie name
+     *
+     * @param Request $request
+     * @return StudioCollection
+     */
+    public function search(Request $request)
+    {
+        $name = $request->input('name');
+        $movie = $request->input('movie');
+
+        $studio = Studio::with('movies')
+            ->when($name, function ($query) use ($name) {
+                return $query->where('name', 'like', "%$name%");
+            })
+            ->whereHas('movies', function ($query) use ($movie) {
+                return $query->where('name', 'like', "%$movie%");
+            })
+            ->get();
+
+        return new StudioCollection($studio);
+    }
+
 
     /**
      * Store a newly created resource in storage.
