@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Actor;
+use App\Http\Requests\ActorRequest;
 use App\Http\Resources\ActorCollection;
 use App\Http\Resources\ActorResource;
 use Illuminate\Http\Request;
@@ -49,10 +50,10 @@ class ActorController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
+     * @param ActorRequest $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store(ActorRequest $request)
     {
         try {
             $actor = Actor::create($request->all());
@@ -89,11 +90,11 @@ class ActorController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request
+     * @param ActorRequest $request
      * @param int $id
      * @return Response
      */
-    public function update(Request $request, $id)
+    public function update(ActorRequest $request, $id)
     {
         $actor = Actor::find($id);
         $actor->movies()->sync($request->movies);
