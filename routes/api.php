@@ -24,22 +24,23 @@ Route::middleware('api')->namespace('Auth')->prefix('auth')->group(function () {
     Route::post('me', 'AuthController@me');
 });
 
+
+Route::middleware(['jwt.auth', 'can:manage-users'])->group(function () {
+
+});
 Route::middleware(['jwt.auth', 'can:manage-movies'])->group(function () {
-    Route::get('/movies/search', 'MovieController@search');
     Route::apiResource('movies', 'MovieController')->only([
         'store',
         'update',
         'delete',
     ]);
 
-    Route::get('/studios/search', 'StudioController@search');
     Route::apiResource('studios', 'StudioController')->only([
         'store',
         'update',
         'delete',
     ]);
 
-    Route::get('/actors/search', 'ActorController@search');
     Route::apiResource('actors', 'ActorController')->only([
         'store',
         'update',
@@ -48,16 +49,21 @@ Route::middleware(['jwt.auth', 'can:manage-movies'])->group(function () {
 });
 
 Route::middleware(['jwt.auth', 'can:view-movies'])->group(function () {
+    Route::get('/movies/search', 'MovieController@search');
     Route::apiResource('movies', 'MovieController')->only([
         'index',
         'show',
         'search'
     ]);
+
+    Route::get('/studios/search', 'StudioController@search');
     Route::apiResource('studios', 'StudioController')->only([
         'index',
         'show',
         'search'
     ]);
+
+    Route::get('/actors/search', 'ActorController@search');
     Route::apiResource('actors', 'ActorController')->only([
         'index',
         'show',
