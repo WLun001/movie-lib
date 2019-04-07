@@ -2,8 +2,9 @@
 
 namespace App\Console\Commands;
 
+use App\User;
 use Illuminate\Console\Command;
-use Silber\Bouncer\Bouncer;
+use Bouncer;
 
 class InitBouncer extends Command
 {
@@ -62,24 +63,8 @@ class InitBouncer extends Command
             'name' => 'manage-movies',
             'title' => 'Manage Movies',
         ]);
-        $manageStudios = Bouncer::ability()->create([
-            'name' => 'manage-studios',
-            'title' => 'Manage Studios',
-        ]);
-        $manageActors = Bouncer::ability()->create([
-            'name' => 'manage-actors',
-            'title' => 'Manage Actors',
-        ]);
 
         $viewMovies = Bouncer::ability()->create([
-            'name' => 'view-movies',
-            'title' => 'View Movies',
-        ]);
-        $viewStudios = Bouncer::ability()->create([
-            'name' => 'view-movies',
-            'title' => 'View Movies',
-        ]);
-        $viewActors = Bouncer::ability()->create([
             'name' => 'view-movies',
             'title' => 'View Movies',
         ]);
@@ -88,22 +73,19 @@ class InitBouncer extends Command
         Bouncer::allow($admin)->to($manageUsers);
 
         Bouncer::allow($staff)->to($manageMovies);
-        Bouncer::allow($staff)->to($manageStudios);
-        Bouncer::allow($staff)->to($manageActors);
+        Bouncer::allow($staff)->to($viewMovies);
 
         Bouncer::allow($member)->to($viewMovies);
-        Bouncer::allow($member)->to($viewStudios);
-        Bouncer::allow($member)->to($viewActors);
 
 
         // Assign role to users
         $user = User::where('email', 'admin@mylib.info')->first();
         Bouncer::assign($admin)->to($user);
 
-        $user = User::where('email', 'user1@mylib.info')->first();
+        $user = User::where('email', 'staff@mylib.info')->first();
         Bouncer::assign($staff)->to($user);
 
-        $user = User::where('email', 'user2@mylib.info')->first();
+        $user = User::where('email', 'member@mylib.info')->first();
         Bouncer::assign($member)->to($user);
 
     }
