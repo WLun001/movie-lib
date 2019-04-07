@@ -22,6 +22,33 @@ class MovieController extends Controller
         return new MovieCollection($movies);
     }
 
+    /**
+     * Search studios based on movie name or/and actor name or/and studio name
+     *
+     * @param Request $request
+     * @return MovieCollection
+     */
+    public function search(Request $request)
+    {
+        $name = $request->input('name');
+        $studio = $request->input('studio');
+        $actor = $request->input('actor');
+
+        $movies = Movie::with(['actors', 'studio'])
+            ->when($name, function ($query) use ($name) {
+                return $query->where('name', 'like', "%$name%");
+            })
+            ->whereHas('studio', function ($query) use ($studio) {
+                return $query->where('name', 'like', "%$studio%");
+            })
+            ->whereHas('actors', function ($query) use ($actor) {
+                return $query->where('name', 'like', "%$actor%");
+            })
+            ->get();
+
+        return new MovieCollection($movies);
+    }
+
 
     /**
      * Store a newly created resource in storage.
