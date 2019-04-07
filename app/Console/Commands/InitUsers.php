@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\User;
 use Illuminate\Console\Command;
 
 class InitUsers extends Command
@@ -28,17 +29,17 @@ class InitUsers extends Command
         [
             'name' => 'Administrator',
             'email' => 'admin@mylib.info',
-            'password' => 'adminpass',
+            'password' => 'admin',
         ],
         [
             'name' => 'User One',
-            'email' => 'user1@mylib.info',
-            'password' => 'user1pass',
+            'email' => 'staff@mylib.info',
+            'password' => 'staff',
         ],
         [
             'name' => 'User Two',
-            'email' => 'user2@mylib.info',
-            'password' => 'user2pass',
+            'email' => 'member@mylib.info',
+            'password' => 'member',
         ],
     ];
 

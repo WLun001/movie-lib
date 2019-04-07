@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use Silber\Bouncer\Bouncer;
 
 class InitBouncer extends Command
 {
@@ -32,8 +33,6 @@ class InitBouncer extends Command
 
     /**
      * Execute the console command.
-     *
-     * @return mixed
      */
     public function handle()
     {
@@ -56,28 +55,45 @@ class InitBouncer extends Command
         // Define abilities
         $manageUsers = Bouncer::ability()->create([
             'name' => 'manage-users',
-            'title' => 'Manager Users',
+            'title' => 'Manage Users',
         ]);
 
-        $manageBooks = Bouncer::ability()->create([
-            'name' => 'manage-books',
-            'title' => 'Manager Books',
+        $manageMovies = Bouncer::ability()->create([
+            'name' => 'manage-movies',
+            'title' => 'Manage Movies',
+        ]);
+        $manageStudios = Bouncer::ability()->create([
+            'name' => 'manage-studios',
+            'title' => 'Manage Studios',
+        ]);
+        $manageActors = Bouncer::ability()->create([
+            'name' => 'manage-actors',
+            'title' => 'Manage Actors',
         ]);
 
-        $viewBooks = Bouncer::ability()->create([
-            'name' => 'view-books',
-            'title' => 'View Books',
+        $viewMovies = Bouncer::ability()->create([
+            'name' => 'view-movies',
+            'title' => 'View Movies',
+        ]);
+        $viewStudios = Bouncer::ability()->create([
+            'name' => 'view-movies',
+            'title' => 'View Movies',
+        ]);
+        $viewActors = Bouncer::ability()->create([
+            'name' => 'view-movies',
+            'title' => 'View Movies',
         ]);
 
         // Assign abilities to roles
         Bouncer::allow($admin)->to($manageUsers);
-        Bouncer::allow($admin)->to($manageBooks);
-        Bouncer::allow($admin)->to($viewBooks);
 
-        Bouncer::allow($staff)->to($manageBooks);
-        Bouncer::allow($staff)->to($viewBooks);
+        Bouncer::allow($staff)->to($manageMovies);
+        Bouncer::allow($staff)->to($manageStudios);
+        Bouncer::allow($staff)->to($manageActors);
 
-        Bouncer::allow($member)->to($viewBooks);
+        Bouncer::allow($member)->to($viewMovies);
+        Bouncer::allow($member)->to($viewStudios);
+        Bouncer::allow($member)->to($viewActors);
 
 
         // Assign role to users
