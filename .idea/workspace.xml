@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="612513d8-af73-43a9-b428-babdef33c3fe" name="Default Changelist" comment="feat: added bouncer">
+    <list default="true" id="612513d8-af73-43a9-b428-babdef33c3fe" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Console/Commands/InitBouncer.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Console/Commands/InitBouncer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Console/Commands/InitUsers.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Console/Commands/InitUsers.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -15,43 +14,58 @@
   <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
   </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="@localhost" type="feb32156:DbDataSourceImpl" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="movie-lib: schema" type="ebfa3cd1:MariaImplModel$Schema" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ActorController.php">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Auth/ForgotPasswordController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="297">
-              <caret line="9" column="29" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AuthController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="99">
-              <caret line="3" selection-start-line="3" selection-end-line="3" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/Console/Commands/InitUsers.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="736">
-              <caret line="41" column="33" selection-start-line="41" selection-start-column="33" selection-end-line="41" selection-end-column="33" />
+            <state relative-caret-position="132">
+              <caret line="4" column="4" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="4" />
               <folding>
-                <element signature="e#40#53#0#PHP" expanded="true" />
+                <element signature="e#45#81#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Requests/ActorRequest.php">
+        <entry file="file://$PROJECT_DIR$/app/Console/Commands/InitUsers.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="957">
-              <caret line="29" column="35" selection-start-line="29" selection-start-column="35" selection-end-line="29" selection-end-column="35" />
+            <state relative-caret-position="1320">
+              <caret line="41" column="33" selection-start-line="41" selection-start-column="33" selection-end-line="41" selection-end-column="33" />
+              <folding>
+                <element signature="e#40#53#0#PHP" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -77,8 +91,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Console/Commands/InitBouncer.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="97" column="47" selection-start-line="97" selection-start-column="47" selection-end-line="97" selection-end-column="47" />
+            <state relative-caret-position="1089">
+              <caret line="34" column="35" selection-start-line="34" selection-start-column="35" selection-end-line="34" selection-end-column="35" />
               <folding>
                 <element signature="e#40#71#0#PHP" expanded="true" />
               </folding>
@@ -110,8 +124,64 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/api.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="792">
-              <caret line="24" column="3" selection-start-line="24" selection-start-column="3" selection-end-line="24" selection-end-column="3" />
+            <state relative-caret-position="604">
+              <caret line="22" column="53" selection-start-line="22" selection-start-column="53" selection-end-line="22" selection-end-column="53" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="uml://DATABASE/6ad3c8d0-6ba9-4d73-8c85-3c6c6e72db58.SCHEMA:movie-lib">
+          <provider selected="true" editor-type-id="UmlEditorProvider">
+            <state>
+              <ID>DATABASE</ID>
+              <OriginalElement>6ad3c8d0-6ba9-4d73-8c85-3c6c6e72db58.SCHEMA:movie-lib</OriginalElement>
+              <nodes>
+                <node x="0.0" y="194.0">6ad3c8d0-6ba9-4d73-8c85-3c6c6e72db58.TABLE:movie-lib.movies</node>
+                <node x="147.67757198864405" y="701.8043801541164">6ad3c8d0-6ba9-4d73-8c85-3c6c6e72db58.TABLE:movie-lib.migrations</node>
+                <node x="507.8383128295254" y="574.8448019467353">6ad3c8d0-6ba9-4d73-8c85-3c6c6e72db58.TABLE:movie-lib.users</node>
+                <node x="582.0" y="356.0">6ad3c8d0-6ba9-4d73-8c85-3c6c6e72db58.TABLE:movie-lib.permissions</node>
+                <node x="24.5" y="0.0">6ad3c8d0-6ba9-4d73-8c85-3c6c6e72db58.TABLE:movie-lib.studios</node>
+                <node x="884.0" y="275.0">6ad3c8d0-6ba9-4d73-8c85-3c6c6e72db58.TABLE:movie-lib.assigned_roles</node>
+                <node x="902.2175206164663" y="600.4808706232257">6ad3c8d0-6ba9-4d73-8c85-3c6c6e72db58.TABLE:movie-lib.password_resets</node>
+                <node x="303.0" y="221.0">6ad3c8d0-6ba9-4d73-8c85-3c6c6e72db58.TABLE:movie-lib.actors</node>
+                <node x="583.0" y="0.0">6ad3c8d0-6ba9-4d73-8c85-3c6c6e72db58.TABLE:movie-lib.abilities</node>
+                <node x="139.029234824929" y="580.2327970798972">6ad3c8d0-6ba9-4d73-8c85-3c6c6e72db58.TABLE:movie-lib.actor_movie</node>
+                <node x="926.0" y="0.0">6ad3c8d0-6ba9-4d73-8c85-3c6c6e72db58.TABLE:movie-lib.roles</node>
+              </nodes>
+              <notes />
+              <edges>
+                <edge source="6ad3c8d0-6ba9-4d73-8c85-3c6c6e72db58.TABLE:movie-lib.actor_movie" target="6ad3c8d0-6ba9-4d73-8c85-3c6c6e72db58.TABLE:movie-lib.actors">
+                  <point x="70.25" y="-45.0" />
+                  <point x="351.0" y="471.0" />
+                  <point x="420.0" y="471.0" />
+                  <point x="0.0" y="99.0" />
+                </edge>
+                <edge source="6ad3c8d0-6ba9-4d73-8c85-3c6c6e72db58.TABLE:movie-lib.actor_movie" target="6ad3c8d0-6ba9-4d73-8c85-3c6c6e72db58.TABLE:movie-lib.movies">
+                  <point x="-70.25" y="-45.0" />
+                  <point x="210.5" y="471.0" />
+                  <point x="141.5" y="471.0" />
+                  <point x="0.0" y="126.0" />
+                </edge>
+                <edge source="6ad3c8d0-6ba9-4d73-8c85-3c6c6e72db58.TABLE:movie-lib.permissions" target="6ad3c8d0-6ba9-4d73-8c85-3c6c6e72db58.TABLE:movie-lib.abilities">
+                  <point x="0.0" y="-99.0" />
+                  <point x="0.0" y="153.0" />
+                </edge>
+                <edge source="6ad3c8d0-6ba9-4d73-8c85-3c6c6e72db58.TABLE:movie-lib.movies" target="6ad3c8d0-6ba9-4d73-8c85-3c6c6e72db58.TABLE:movie-lib.studios">
+                  <point x="0.0" y="-126.0" />
+                  <point x="0.0" y="72.0" />
+                </edge>
+                <edge source="6ad3c8d0-6ba9-4d73-8c85-3c6c6e72db58.TABLE:movie-lib.assigned_roles" target="6ad3c8d0-6ba9-4d73-8c85-3c6c6e72db58.TABLE:movie-lib.roles">
+                  <point x="0.0" y="-112.5" />
+                  <point x="0.0" y="112.5" />
+                </edge>
+              </edges>
+              <settings layout="Hierarchic Group" zoom="0.9191583610188261" x="601.0" y="449.5" />
+              <SelectedNodes />
+              <Categories>
+                <Category>Key columns</Category>
+                <Category>Columns</Category>
+              </Categories>
             </state>
           </provider>
         </entry>
@@ -149,12 +219,6 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="mock:///Dummy.txt" root0="SKIP_INSPECTION" />
-    <setting file="mock:///Dummy.txt" root0="SKIP_INSPECTION" />
-    <setting file="mock:///Dummy.txt" root0="SKIP_INSPECTION" />
-    <setting file="mock:///Dummy.txt" root0="SKIP_INSPECTION" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -194,8 +258,9 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/AuthController.php" />
         <option value="$PROJECT_DIR$/app/User.php" />
         <option value="$PROJECT_DIR$/database/migrations/2019_04_07_060012_create_bouncer_tables.php" />
-        <option value="$PROJECT_DIR$/app/Console/Commands/InitBouncer.php" />
         <option value="$PROJECT_DIR$/app/Console/Commands/InitUsers.php" />
+        <option value="$PROJECT_DIR$/app/Console/Commands/InitBouncer.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Auth/AuthController.php" />
       </list>
     </option>
   </component>
@@ -298,7 +363,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -336,6 +400,14 @@
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="Http" type="462c0819:PsiDirectoryNode" />
               <item name="Controllers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="movie-lib" type="b2602c69:ProjectViewProjectNode" />
+              <item name="movie-lib" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Http" type="462c0819:PsiDirectoryNode" />
+              <item name="Controllers" type="462c0819:PsiDirectoryNode" />
+              <item name="Auth" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="movie-lib" type="b2602c69:ProjectViewProjectNode" />
@@ -393,13 +465,30 @@
               <item name="PHP Runtime" type="20ee2d1f:SyntheticLibraryElementNode" />
               <item name="date" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="movie-lib" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Scratches and Consoles" type="1a2a3e82:ScratchProjectViewPane$MyProjectNode" />
+            </path>
+            <path>
+              <item name="movie-lib" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Scratches and Consoles" type="1a2a3e82:ScratchProjectViewPane$MyProjectNode" />
+              <item name="Database Consoles" type="d62648e6:ScratchProjectViewPane$MyRootNode" />
+            </path>
+            <path>
+              <item name="movie-lib" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Scratches and Consoles" type="1a2a3e82:ScratchProjectViewPane$MyProjectNode" />
+              <item name="Database Consoles" type="d62648e6:ScratchProjectViewPane$MyRootNode" />
+              <item name="6ad3c8d0-6ba9-4d73-8c85-3c6c6e72db58" type="1e004dc1:ScratchProjectViewPane$MyRootNode$1$1" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="mysql" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -407,6 +496,11 @@
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php.zend.framework.tool" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/Http/Controllers/Auth" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -438,7 +532,8 @@
       <updated>1554547061087</updated>
       <workItem from="1554547062669" duration="11931000" />
       <workItem from="1554602386551" duration="8910000" />
-      <workItem from="1554618883694" duration="457000" />
+      <workItem from="1554618883694" duration="1535000" />
+      <workItem from="1554620657331" duration="300000" />
     </task>
     <task id="LOCAL-00001" summary="feat: migrated database">
       <created>1554566043111</created>
@@ -545,11 +640,25 @@
       <option name="project" value="LOCAL" />
       <updated>1554616999202</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="feat: define roles and abilities">
+      <created>1554619406593</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1554619406593</updated>
+    </task>
+    <task id="LOCAL-00017" summary="feat: moved auth to different namespace">
+      <created>1554620158750</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1554620158751</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="21298000" />
+    <option name="totallyTimeSpent" value="22676000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -564,7 +673,7 @@
     <frame x="0" y="34" width="1920" height="1046" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25751072" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.2607296" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -584,7 +693,7 @@
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Database" order="3" />
+      <window_info anchor="right" id="Database" order="3" visible="true" weight="0.3299356" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -607,7 +716,9 @@
     <MESSAGE value="feat: added request" />
     <MESSAGE value="feat: added jwt token" />
     <MESSAGE value="feat: added bouncer" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: added bouncer" />
+    <MESSAGE value="feat: define roles and abilities" />
+    <MESSAGE value="feat: moved auth to different namespace" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: moved auth to different namespace" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/.env">
@@ -762,9 +873,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Auth/ForgotPasswordController.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Auth/ResetPasswordController.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -830,17 +938,50 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AuthController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="99">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Requests/ActorRequest.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="957">
           <caret line="29" column="35" selection-start-line="29" selection-start-column="35" selection-end-line="29" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/app.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="5" lean-forward="true" selection-start-column="5" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/6ad3c8d0-6ba9-4d73-8c85-3c6c6e72db58/console.sql">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Auth/AuthController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="8" column="6" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
+          <folding>
+            <element signature="e#46#82#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Auth/ForgotPasswordController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="4" column="4" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="4" />
+          <folding>
+            <element signature="e#45#81#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Console/Commands/InitUsers.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1320">
+          <caret line="41" column="33" selection-start-line="41" selection-start-column="33" selection-end-line="41" selection-end-column="33" />
+          <folding>
+            <element signature="e#40#53#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -855,6 +996,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="660">
           <caret line="24" column="29" selection-start-line="24" selection-start-column="29" selection-end-line="24" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Console/Commands/InitBouncer.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1089">
+          <caret line="34" column="35" selection-start-line="34" selection-start-column="35" selection-end-line="34" selection-end-column="35" />
+          <folding>
+            <element signature="e#40#71#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -875,30 +1026,86 @@
         </state>
       </provider>
     </entry>
+    <entry file="uml://DATABASE/6ad3c8d0-6ba9-4d73-8c85-3c6c6e72db58.TABLE:movie-lib.actor_movie">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>DATABASE</ID>
+          <OriginalElement>6ad3c8d0-6ba9-4d73-8c85-3c6c6e72db58.TABLE:movie-lib.actor_movie</OriginalElement>
+          <nodes>
+            <node x="" y="">6ad3c8d0-6ba9-4d73-8c85-3c6c6e72db58.TABLE:movie-lib.actor_movie</node>
+            <node x="" y="">6ad3c8d0-6ba9-4d73-8c85-3c6c6e72db58.TABLE:movie-lib.actors</node>
+            <node x="" y="">6ad3c8d0-6ba9-4d73-8c85-3c6c6e72db58.TABLE:movie-lib.movies</node>
+            <node x="" y="">6ad3c8d0-6ba9-4d73-8c85-3c6c6e72db58.TABLE:movie-lib.studios</node>
+          </nodes>
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="1.0" x="268.5" y="338.5" />
+          <SelectedNodes />
+          <Categories>
+            <Category>Key columns</Category>
+            <Category>Columns</Category>
+          </Categories>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/routes/api.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="792">
-          <caret line="24" column="3" selection-start-line="24" selection-start-column="3" selection-end-line="24" selection-end-column="3" />
+        <state relative-caret-position="604">
+          <caret line="22" column="53" selection-start-line="22" selection-start-column="53" selection-end-line="22" selection-end-column="53" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Console/Commands/InitBouncer.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="97" column="47" selection-start-line="97" selection-start-column="47" selection-end-line="97" selection-end-column="47" />
-          <folding>
-            <element signature="e#40#71#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Console/Commands/InitUsers.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="736">
-          <caret line="41" column="33" selection-start-line="41" selection-start-column="33" selection-end-line="41" selection-end-column="33" />
-          <folding>
-            <element signature="e#40#53#0#PHP" expanded="true" />
-          </folding>
+    <entry file="uml://DATABASE/6ad3c8d0-6ba9-4d73-8c85-3c6c6e72db58.SCHEMA:movie-lib">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>DATABASE</ID>
+          <OriginalElement>6ad3c8d0-6ba9-4d73-8c85-3c6c6e72db58.SCHEMA:movie-lib</OriginalElement>
+          <nodes>
+            <node x="0.0" y="194.0">6ad3c8d0-6ba9-4d73-8c85-3c6c6e72db58.TABLE:movie-lib.movies</node>
+            <node x="147.67757198864405" y="701.8043801541164">6ad3c8d0-6ba9-4d73-8c85-3c6c6e72db58.TABLE:movie-lib.migrations</node>
+            <node x="507.8383128295254" y="574.8448019467353">6ad3c8d0-6ba9-4d73-8c85-3c6c6e72db58.TABLE:movie-lib.users</node>
+            <node x="582.0" y="356.0">6ad3c8d0-6ba9-4d73-8c85-3c6c6e72db58.TABLE:movie-lib.permissions</node>
+            <node x="24.5" y="0.0">6ad3c8d0-6ba9-4d73-8c85-3c6c6e72db58.TABLE:movie-lib.studios</node>
+            <node x="884.0" y="275.0">6ad3c8d0-6ba9-4d73-8c85-3c6c6e72db58.TABLE:movie-lib.assigned_roles</node>
+            <node x="902.2175206164663" y="600.4808706232257">6ad3c8d0-6ba9-4d73-8c85-3c6c6e72db58.TABLE:movie-lib.password_resets</node>
+            <node x="303.0" y="221.0">6ad3c8d0-6ba9-4d73-8c85-3c6c6e72db58.TABLE:movie-lib.actors</node>
+            <node x="583.0" y="0.0">6ad3c8d0-6ba9-4d73-8c85-3c6c6e72db58.TABLE:movie-lib.abilities</node>
+            <node x="139.029234824929" y="580.2327970798972">6ad3c8d0-6ba9-4d73-8c85-3c6c6e72db58.TABLE:movie-lib.actor_movie</node>
+            <node x="926.0" y="0.0">6ad3c8d0-6ba9-4d73-8c85-3c6c6e72db58.TABLE:movie-lib.roles</node>
+          </nodes>
+          <notes />
+          <edges>
+            <edge source="6ad3c8d0-6ba9-4d73-8c85-3c6c6e72db58.TABLE:movie-lib.actor_movie" target="6ad3c8d0-6ba9-4d73-8c85-3c6c6e72db58.TABLE:movie-lib.actors">
+              <point x="70.25" y="-45.0" />
+              <point x="351.0" y="471.0" />
+              <point x="420.0" y="471.0" />
+              <point x="0.0" y="99.0" />
+            </edge>
+            <edge source="6ad3c8d0-6ba9-4d73-8c85-3c6c6e72db58.TABLE:movie-lib.actor_movie" target="6ad3c8d0-6ba9-4d73-8c85-3c6c6e72db58.TABLE:movie-lib.movies">
+              <point x="-70.25" y="-45.0" />
+              <point x="210.5" y="471.0" />
+              <point x="141.5" y="471.0" />
+              <point x="0.0" y="126.0" />
+            </edge>
+            <edge source="6ad3c8d0-6ba9-4d73-8c85-3c6c6e72db58.TABLE:movie-lib.permissions" target="6ad3c8d0-6ba9-4d73-8c85-3c6c6e72db58.TABLE:movie-lib.abilities">
+              <point x="0.0" y="-99.0" />
+              <point x="0.0" y="153.0" />
+            </edge>
+            <edge source="6ad3c8d0-6ba9-4d73-8c85-3c6c6e72db58.TABLE:movie-lib.movies" target="6ad3c8d0-6ba9-4d73-8c85-3c6c6e72db58.TABLE:movie-lib.studios">
+              <point x="0.0" y="-126.0" />
+              <point x="0.0" y="72.0" />
+            </edge>
+            <edge source="6ad3c8d0-6ba9-4d73-8c85-3c6c6e72db58.TABLE:movie-lib.assigned_roles" target="6ad3c8d0-6ba9-4d73-8c85-3c6c6e72db58.TABLE:movie-lib.roles">
+              <point x="0.0" y="-112.5" />
+              <point x="0.0" y="112.5" />
+            </edge>
+          </edges>
+          <settings layout="Hierarchic Group" zoom="0.9191583610188261" x="601.0" y="449.5" />
+          <SelectedNodes />
+          <Categories>
+            <Category>Key columns</Category>
+            <Category>Columns</Category>
+          </Categories>
         </state>
       </provider>
     </entry>

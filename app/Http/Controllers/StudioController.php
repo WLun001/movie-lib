@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StudioRequest;
 use App\Http\Resources\StudioCollection;
 use App\Http\Resources\StudioResource;
 use App\Studio;
@@ -49,10 +50,10 @@ class StudioController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
+     * @param StudioRequest $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store(StudioRequest $request)
     {
         try {
             $studio = Studio::create($request->all());
@@ -88,11 +89,11 @@ class StudioController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request
+     * @param StudioRequest $request
      * @param int $id
      * @return Response
      */
-    public function update(Request $request, $id)
+    public function update(StudioRequest $request, $id)
     {
         $studio = Studio::find($id);
         if (!$studio) {
