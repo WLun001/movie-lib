@@ -25,7 +25,8 @@ class UserRequest extends ApiFormRequest
         return [
             'name' => 'required|string',
             'email' => 'required|email',
-            'password' => 'required'
+            'password' => 'required',
+            'role' => 'required|string'
         ];
     }
 }

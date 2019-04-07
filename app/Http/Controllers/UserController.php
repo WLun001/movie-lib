@@ -6,10 +6,13 @@ use App\Http\Requests\UserRequest;
 use App\Http\Resources\UserCollection;
 use App\Http\Resources\UserResource;
 use App\User;
+use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
+use Bouncer;
 
 class UserController extends Controller
 {
@@ -62,6 +65,13 @@ class UserController extends Controller
                 'email' => $request['email'],
                 'password' => Hash::make($request['password']),
             ]);
+            $role = $request['role'];
+            if ($role != 'admin' && $role != 'staff' && $role != 'member') {
+                throw new HttpResponseException(response()->json([
+                    'errors' => 'only admin, staff, member role are allowed'
+                ], JsonResponse::HTTP_UNPROCESSABLE_ENTITY));
+            }
+            Bouncer::assign($role)->to($user);
             return response()->json([
                 'id' => $user->id,
                 'created_at' => $user->created_at,
@@ -112,6 +122,14 @@ class UserController extends Controller
             'email' => $request['email'],
             'password' => Hash::make($request['password']),
         ]);
+        $role = $request['role'];
+        if ($role != 'admin' && $role != 'staff' && $role != 'member') {
+            throw new HttpResponseException(response()->json([
+                'errors' => 'only admin, staff, member role are allowed'
+            ], JsonResponse::HTTP_UNPROCESSABLE_ENTITY));
+        }
+        $user->roles()->detach();
+        Bouncer::assign($role)->to($user);
         return response()->json(null, 204);
     }
 
