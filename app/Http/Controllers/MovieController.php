@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\MovieRequest;
 use App\Http\Resources\MovieCollection;
 use App\Http\Resources\MovieResource;
 use App\Movie;
@@ -53,10 +54,10 @@ class MovieController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
+     * @param MovieRequest $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store(MovieRequest $request)
     {
         try {
             $movie = Movie::create($request->all());
@@ -93,11 +94,11 @@ class MovieController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request
+     * @param MovieRequest $request
      * @param int $id
      * @return Response
      */
-    public function update(Request $request, $id)
+    public function update(MovieRequest $request, $id)
     {
         $movie = Movie::find($id);
         $movie->actors()->sync($request->actors);
