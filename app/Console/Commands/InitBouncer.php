@@ -85,6 +85,9 @@ class InitBouncer extends Command
         $user = User::where('email', 'staff@mylib.info')->first();
         Bouncer::assign($staff)->to($user);
 
+        $user = User::where('email', 'staff2@mylib.info')->first();
+        Bouncer::assign($staff)->to($user);
+
         $user = User::where('email', 'member@mylib.info')->first();
         Bouncer::assign($member)->to($user);
 

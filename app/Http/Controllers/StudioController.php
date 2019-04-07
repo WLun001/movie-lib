@@ -6,6 +6,7 @@ use App\Http\Requests\StudioRequest;
 use App\Http\Resources\StudioCollection;
 use App\Http\Resources\StudioResource;
 use App\Studio;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Validation\ValidationException;
@@ -96,14 +97,21 @@ class StudioController extends Controller
     public function update(StudioRequest $request, $id)
     {
         $studio = Studio::find($id);
-        if (!$studio) {
+        if (Gate::allows('update-studio', $studio)) {
+            if (!$studio) {
+                return response()->json([
+                    'error' => 404,
+                    'message' => 'Not found',
+                ], 404);
+            }
+            $studio->update($request->all());
+            return response()->json(null, 204);
+        } else {
             return response()->json([
-                'error' => 404,
-                'message' => 'Not found',
+                'error' => 403,
+                'message' => "You are forbidden to edit $studio->name" ,
             ], 404);
         }
-        $studio->update($request->all());
-        return response()->json(null, 204);
     }
 
     /**
