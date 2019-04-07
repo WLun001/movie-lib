@@ -8,6 +8,7 @@ use App\Http\Resources\UserResource;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 
 class UserController extends Controller
@@ -56,7 +57,11 @@ class UserController extends Controller
     public function store(UserRequest $request)
     {
         try {
-            $user = Studio::create($request->all());
+            $user = User::create([
+                'name' => $request['name'],
+                'email' => $request['email'],
+                'password' => Hash::make($request['password']),
+            ]);
             return response()->json([
                 'id' => $user->id,
                 'created_at' => $user->created_at,
@@ -102,7 +107,11 @@ class UserController extends Controller
                 'message' => 'Not found',
             ], 404);
         }
-        $user->update($request->all());
+        $user->update([
+            'name' => $request['name'],
+            'email' => $request['email'],
+            'password' => Hash::make($request['password']),
+        ]);
         return response()->json(null, 204);
     }
 

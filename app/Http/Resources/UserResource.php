@@ -19,6 +19,7 @@ class UserResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'email' => $this->email,
+            'studios' => new StudioCollection($this->whenLoaded('studios')),
         ];
     }
 }
