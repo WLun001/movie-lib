@@ -32,12 +32,12 @@ class InitUsers extends Command
             'password' => 'admin',
         ],
         [
-            'name' => 'User One',
+            'name' => 'Staff',
             'email' => 'staff@mylib.info',
             'password' => 'staff',
         ],
         [
-            'name' => 'User Two',
+            'name' => 'Member',
             'email' => 'member@mylib.info',
             'password' => 'member',
         ],

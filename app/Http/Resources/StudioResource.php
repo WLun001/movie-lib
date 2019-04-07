@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class StudioResource extends JsonResource
@@ -9,7 +10,7 @@ class StudioResource extends JsonResource
     /**
      * Transform the resource into an array.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param Request $request
      * @return array
      */
     public function toArray($request)
@@ -17,6 +18,7 @@ class StudioResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'user_id' => new UserResource($this->whenLoaded('user')),
             'movies' => new MovieCollection($this->whenLoaded('movies')),
         ];
     }

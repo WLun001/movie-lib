@@ -16,6 +16,8 @@ class CreateStudiosTable extends Migration
         Schema::create('studios', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name')->index();
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

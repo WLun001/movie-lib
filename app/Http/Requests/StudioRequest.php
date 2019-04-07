@@ -22,7 +22,8 @@ class StudioRequest extends ApiFormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string'
+            'name' => 'required|string',
+            'user_id' => 'required|integer'
         ];
     }
 }

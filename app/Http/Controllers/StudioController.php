@@ -19,7 +19,7 @@ class StudioController extends Controller
      */
     public function index()
     {
-        $studios = Studio::with('movies')->get();
+        $studios = Studio::with(['movies', 'user'])->get();
         return new StudioCollection($studios);
     }
 
@@ -34,7 +34,7 @@ class StudioController extends Controller
         $name = $request->input('name');
         $movie = $request->input('movie');
 
-        $studio = Studio::with('movies')
+        $studio = Studio::with(['movies', 'user'])
             ->when($name, function ($query) use ($name) {
                 return $query->where('name', 'like', "%$name%");
             })
@@ -76,7 +76,7 @@ class StudioController extends Controller
      */
     public function show($id)
     {
-        $studio = Studio::with('movies')->find($id);
+        $studio = Studio::with(['movies', 'user'])->find($id);
         if (!$studio) {
             return response()->json([
                 'error' => 404,
