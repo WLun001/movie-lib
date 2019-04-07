@@ -59,4 +59,9 @@ class User extends Authenticatable implements JWTSubject
     {
         return [];
     }
+
+    public function studios()
+    {
+        return $this->hasMany(Studio::class);
+    }
 }

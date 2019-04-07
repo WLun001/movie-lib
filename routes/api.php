@@ -24,6 +24,8 @@ Route::middleware('api')->namespace('Auth')->prefix('auth')->group(function () {
     Route::post('me', 'AuthController@me');
 });
 
+Route::get('/users/search', 'UserController@search');
+Route::apiResource('users', 'UserController');
 
 Route::middleware(['jwt.auth', 'can:manage-users'])->group(function () {
 
