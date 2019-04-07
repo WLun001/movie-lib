@@ -23,7 +23,7 @@ class MovieController extends Controller
     }
 
     /**
-     * Search studios based on movie name or/and actor name or/and studio name
+     * Search movies based on movie name or/and actor name or/and studio name
      *
      * @param Request $request
      * @return MovieCollection

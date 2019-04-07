@@ -22,6 +22,29 @@ class ActorController extends Controller
         return new ActorCollection($actors);
     }
 
+    /**
+     * Search actors based on actor name or/and movie name
+     *
+     * @param Request $request
+     * @return ActorCollection
+     */
+    public function search(Request $request)
+    {
+        $name = $request->input('name');
+        $movie = $request->input('movie');
+
+        $actors = Actor::with('movies')
+            ->when($name, function ($query) use ($name) {
+                return $query->where('name', 'like', "%$name%");
+            })
+            ->whereHas('movies', function ($query) use ($movie) {
+                return $query->where('name', 'like', "%$movie%");
+            })
+            ->get();
+
+        return new ActorCollection($actors);
+    }
+
 
     /**
      * Store a newly created resource in storage.

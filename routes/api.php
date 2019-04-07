@@ -21,4 +21,5 @@ Route::get('/studios/search', 'StudioController@search');
 Route::apiResource('studios', 'StudioController');
 Route::get('/movies/search', 'MovieController@search');
 Route::apiResource('movies', 'MovieController');
+Route::get('/actors/search', 'ActorController@search');
 Route::apiResource('actors', 'ActorController');
