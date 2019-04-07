@@ -33,7 +33,6 @@ class StudioController extends Controller
     {
         try {
             $studio = Studio::create($request->all());
-            $studio->movies()->sync($request->movies);
             return response()->json([
                 'id' => $studio->id,
                 'created_at' => $studio->created_at,
@@ -73,7 +72,6 @@ class StudioController extends Controller
     public function update(Request $request, $id)
     {
         $studio = Studio::find($id);
-        $studio->movies()->sync($request->movies);
         if (!$studio) {
             return response()->json([
                 'error' => 404,

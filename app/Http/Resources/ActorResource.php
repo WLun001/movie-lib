@@ -17,6 +17,8 @@ class ActorResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'sex' => $this->sex,
+            'age' => $this->age,
             'movies' => new MovieCollection($this->whenLoaded('movies')),
         ];
     }

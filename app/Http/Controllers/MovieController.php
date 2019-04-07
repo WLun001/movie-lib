@@ -33,7 +33,6 @@ class MovieController extends Controller
     {
         try {
             $movie = Movie::create($request->all());
-            $movie->studio()->sync($request->studio);
             $movie->actors()->sync($request->actors);
             return response()->json([
                 'id' => $movie->id,
@@ -74,7 +73,6 @@ class MovieController extends Controller
     public function update(Request $request, $id)
     {
         $movie = Movie::find($id);
-        $movie->studio()->sync($request->studio);
         $movie->actors()->sync($request->actors);
         if (!$movie) {
             return response()->json([
