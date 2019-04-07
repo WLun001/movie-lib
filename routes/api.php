@@ -36,19 +36,19 @@ Route::middleware(['jwt.auth', 'can:manage-movies'])->group(function () {
     Route::apiResource('movies', 'MovieController')->only([
         'store',
         'update',
-        'delete',
+        'destroy',
     ]);
 
     Route::apiResource('studios', 'StudioController')->only([
         'store',
         'update',
-        'delete',
+        'destroy',
     ]);
 
     Route::apiResource('actors', 'ActorController')->only([
         'store',
         'update',
-        'delete'
+        'destroy'
     ]);
 });
 

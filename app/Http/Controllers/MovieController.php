@@ -127,6 +127,7 @@ class MovieController extends Controller
                 'message' => 'Not found',
             ], 404);
         }
+        $movie->actors()->detach();
         $movie->delete();
         return response()->json(null, 204);
     }

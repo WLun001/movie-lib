@@ -123,6 +123,7 @@ class ActorController extends Controller
                 'message' => 'Not found',
             ], 404);
         }
+        $actor->movies()->detach();
         $actor->delete();
         return response()->json(null, 204);
     }
