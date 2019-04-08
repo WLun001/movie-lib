@@ -79,16 +79,16 @@ class InitBouncer extends Command
 
 
         // Assign role to users
-        $user = User::where('email', 'admin@mylib.info')->first();
+        $user = User::where('email', 'admin@mymovie.info')->first();
         Bouncer::assign($admin)->to($user);
 
-        $user = User::where('email', 'staff@mylib.info')->first();
+        $user = User::where('email', 'staff@mymovie.info')->first();
         Bouncer::assign($staff)->to($user);
 
-        $user = User::where('email', 'staff2@mylib.info')->first();
+        $user = User::where('email', 'staff2@mymovie.info')->first();
         Bouncer::assign($staff)->to($user);
 
-        $user = User::where('email', 'member@mylib.info')->first();
+        $user = User::where('email', 'member@mymovie.info')->first();
         Bouncer::assign($member)->to($user);
 
     }

@@ -28,22 +28,22 @@ class InitUsers extends Command
     private $users_data = [
         [
             'name' => 'Administrator',
-            'email' => 'admin@mylib.info',
+            'email' => 'admin@mymovie.info',
             'password' => 'admin',
         ],
         [
             'name' => 'Staff',
-            'email' => 'staff@mylib.info',
+            'email' => 'staff@mymovie.info',
             'password' => 'staff',
         ],
         [
             'name' => 'Staff 2',
-            'email' => 'staff2@mylib.info',
+            'email' => 'staff2@mymovie.info',
             'password' => 'staff',
         ],
         [
             'name' => 'Member',
-            'email' => 'member@mylib.info',
+            'email' => 'member@mymovie.info',
             'password' => 'member',
         ],
     ];
