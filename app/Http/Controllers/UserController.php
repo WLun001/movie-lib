@@ -6,6 +6,8 @@ use App\Http\Requests\UserRequest;
 use App\Http\Resources\UserCollection;
 use App\Http\Resources\UserResource;
 use App\User;
+use Exception;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -79,7 +81,11 @@ class UserController extends Controller
         } catch (ValidationException $exception) {
             return response()->json([
                 'errors' => $exception->errors()
-            ]);
+            ], 422);
+        } catch (Exception $ex) {
+            return response()->json([
+                'message' => $ex->getMessage(),
+            ], 500);
         }
     }
 
@@ -91,14 +97,19 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $user = User::with('studios')->find($id);
-        if (!$user) {
+        try {
+            $user = User::with('studios')->find($id);
+            if (!$user) throw new ModelNotFoundException('model not found');
+            return new UserResource($user);
+        } catch (ModelNotFoundException $exception) {
             return response()->json([
-                'error' => 404,
-                'message' => 'Not found',
+                'errors' => $exception->getMessage()
             ], 404);
+        } catch (Exception $ex) {
+            return response()->json([
+                'message' => $ex->getMessage(),
+            ], 500);
         }
-        return new UserResource($user);
     }
 
     /**
@@ -110,27 +121,36 @@ class UserController extends Controller
      */
     public function update(UserRequest $request, $id)
     {
-        $user = User::find($id);
-        if (!$user) {
+        try {
+            $user = User::find($id);
+            if (!$user) throw new ModelNotFoundException('model not found');
+            $user->update([
+                'name' => $request['name'],
+                'email' => $request['email'],
+                'password' => Hash::make($request['password']),
+            ]);
+            $role = $request['role'];
+            if ($role != 'admin' && $role != 'staff' && $role != 'member') {
+                throw new HttpResponseException(response()->json([
+                    'errors' => 'only admin, staff, member role are allowed'
+                ], JsonResponse::HTTP_UNPROCESSABLE_ENTITY));
+            }
+            $user->roles()->detach();
+            Bouncer::assign($role)->to($user);
+            return response()->json(null, 204);
+        } catch (ValidationException $exception) {
             return response()->json([
-                'error' => 404,
-                'message' => 'Not found',
+                'errors' => $exception->errors()
+            ], 422);
+        } catch (ModelNotFoundException $exception) {
+            return response()->json([
+                'errors' => $exception->getMessage()
             ], 404);
+        } catch (Exception $ex) {
+            return response()->json([
+                'message' => $ex->getMessage(),
+            ], 500);
         }
-        $user->update([
-            'name' => $request['name'],
-            'email' => $request['email'],
-            'password' => Hash::make($request['password']),
-        ]);
-        $role = $request['role'];
-        if ($role != 'admin' && $role != 'staff' && $role != 'member') {
-            throw new HttpResponseException(response()->json([
-                'errors' => 'only admin, staff, member role are allowed'
-            ], JsonResponse::HTTP_UNPROCESSABLE_ENTITY));
-        }
-        $user->roles()->detach();
-        Bouncer::assign($role)->to($user);
-        return response()->json(null, 204);
     }
 
     /**
@@ -142,21 +162,26 @@ class UserController extends Controller
     public
     function destroy($id)
     {
-        $user = User::find($id);
-        if (!$user) {
-            return response()->json([
-                'error' => 404,
-                'message' => 'Not found',
-            ], 404);
-        }
-        if ($user->studios) {
-            foreach ($user->studios as $studio) {
-                $studio->user()->dissociate();
-                $studio->save();
+        try {
+            $user = User::find($id);
+            if (!$user) throw new ModelNotFoundException('model not found');
+            if ($user->studios) {
+                foreach ($user->studios as $studio) {
+                    $studio->user()->dissociate();
+                    $studio->save();
+                }
             }
+            $user->roles()->detach();
+            $user->delete();
+            return response()->json(null, 204);
+        } catch (ModelNotFoundException $exception) {
+            return response()->json([
+                'errors' => $exception->getMessage()
+            ], 404);
+        } catch (Exception $ex) {
+            return response()->json([
+                'message' => $ex->getMessage(),
+            ], 500);
         }
-        $user->roles()->detach();
-        $user->delete();
-        return response()->json(null, 204);
     }
 }
