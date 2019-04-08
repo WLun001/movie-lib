@@ -3,7 +3,6 @@
 namespace App\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
-use Illuminate\Validation\Rule as Rules;
 
 class IsValidRole implements Rule
 {
@@ -27,7 +26,6 @@ class IsValidRole implements Rule
     public function passes($attribute, $value)
     {
         return in_array($value, ['admin', 'staff', 'member']);
-//        return Rules::in(['admin', 'staff', 'member'], $value);
     }
 
     /**

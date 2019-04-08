@@ -85,7 +85,7 @@ class StudioController extends Controller
     {
         try {
             $studio = Studio::with(['movies', 'user'])->find($id);
-            if (!$studio) throw new ModelNotFoundException('model not found');
+            if (!$studio) throw new ModelNotFoundException('studio not found');
             return new StudioResource($studio);
         } catch (ModelNotFoundException $exception) {
             return response()->json([
@@ -110,7 +110,7 @@ class StudioController extends Controller
         try {
             $studio = Studio::find($id);
             if (Gate::allows('update-studio', $studio)) {
-                if (!$studio) throw new ModelNotFoundException('model not found');
+                if (!$studio) throw new ModelNotFoundException('studio not found');
                 $studio->update($request->all());
                 return response()->json(null, 204);
             } else {
@@ -142,7 +142,7 @@ class StudioController extends Controller
     {
         try {
             $studio = Studio::find($id);
-            if (!$studio) throw new ModelNotFoundException('model not found');
+            if (!$studio) throw new ModelNotFoundException('studio not found');
             if ($studio->movies) {
                 foreach ($studio->movies as $movie) {
                     $movie->studio()->dissociate();

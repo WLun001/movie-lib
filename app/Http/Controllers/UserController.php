@@ -91,7 +91,7 @@ class UserController extends Controller
     {
         try {
             $user = User::with('studios')->find($id);
-            if (!$user) throw new ModelNotFoundException('model not found');
+            if (!$user) throw new ModelNotFoundException('user not found');
             return new UserResource($user);
         } catch (ModelNotFoundException $exception) {
             return response()->json([
@@ -115,7 +115,7 @@ class UserController extends Controller
     {
         try {
             $user = User::find($id);
-            if (!$user) throw new ModelNotFoundException('model not found');
+            if (!$user) throw new ModelNotFoundException('user not found');
             $user->update([
                 'name' => $request['name'],
                 'email' => $request['email'],
@@ -151,7 +151,7 @@ class UserController extends Controller
     {
         try {
             $user = User::find($id);
-            if (!$user) throw new ModelNotFoundException('model not found');
+            if (!$user) throw new ModelNotFoundException('user not found');
             if ($user->studios) {
                 foreach ($user->studios as $studio) {
                     $studio->user()->dissociate();

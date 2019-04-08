@@ -85,7 +85,7 @@ class ActorController extends Controller
     {
         try {
             $actor = Actor::with('movies')->find($id);
-            if (!$actor) throw new ModelNotFoundException('model not found');
+            if (!$actor) throw new ModelNotFoundException('actor not found');
             return new ActorResource($actor);
         } catch (ModelNotFoundException $exception) {
             return response()->json([
@@ -111,7 +111,7 @@ class ActorController extends Controller
         try {
             $actor = Actor::find($id);
             $actor->movies()->sync($request->movies);
-            if (!$actor) throw new ModelNotFoundException('model not found');
+            if (!$actor) throw new ModelNotFoundException('actor not found');
             $actor->update($request->all());
             return response()->json(null, 204);
         } catch (ValidationException $exception) {
@@ -140,7 +140,7 @@ class ActorController extends Controller
     {
         try {
             $actor = Actor::find($id);
-            if (!$actor) throw new ModelNotFoundException('model not found');
+            if (!$actor) throw new ModelNotFoundException('actor not found');
             $actor->movies()->detach();
             $actor->delete();
             return response()->json(null, 204);

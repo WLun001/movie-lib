@@ -89,7 +89,7 @@ class MovieController extends Controller
     {
         try {
             $movie = Movie::with(['actors', 'studio'])->find($id);
-            if (!$movie) throw new ModelNotFoundException('model not found');
+            if (!$movie) throw new ModelNotFoundException('movie not found');
             return new MovieResource($movie);
         } catch (ModelNotFoundException $exception) {
             return response()->json([
@@ -114,7 +114,7 @@ class MovieController extends Controller
         try {
             $movie = Movie::find($id);
             $movie->actors()->sync($request->actors);
-            if (!$movie) throw new ModelNotFoundException('model not found');
+            if (!$movie) throw new ModelNotFoundException('movie not found');
             $movie->update($request->all());
             return response()->json(null, 204);
         } catch (ValidationException $exception) {
@@ -143,7 +143,7 @@ class MovieController extends Controller
     {
         try {
             $movie = Movie::find($id);
-            if (!$movie) throw new ModelNotFoundException('model not found');
+            if (!$movie) throw new ModelNotFoundException('movie not found');
             $movie->actors()->detach();
             $movie->delete();
             return response()->json(null, 204);
