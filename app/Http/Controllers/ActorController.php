@@ -6,6 +6,8 @@ use App\Actor;
 use App\Http\Requests\ActorRequest;
 use App\Http\Resources\ActorCollection;
 use App\Http\Resources\ActorResource;
+use Exception;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Validation\ValidationException;
@@ -65,7 +67,11 @@ class ActorController extends Controller
         } catch (ValidationException $exception) {
             return response()->json([
                 'errors' => $exception->errors()
-            ]);
+            ], 422);
+        } catch (Exception $ex) {
+            return response()->json([
+                'message' => $ex->getMessage(),
+            ], 500);
         }
     }
 
@@ -77,14 +83,24 @@ class ActorController extends Controller
      */
     public function show($id)
     {
-        $actor = Actor::with('movies')->find($id);
-        if (!$actor) {
+        try {
+            $actor = Actor::with('movies')->find($id);
+            if (!$actor) throw new ModelNotFoundException('model not found');
+            return new ActorResource($actor);
+        } catch (ValidationException $exception) {
             return response()->json([
-                'error' => 404,
-                'message' => 'Not found',
+                'errors' => $exception->errors()
+            ], 422);
+        } catch (ModelNotFoundException $exception) {
+            return response()->json([
+                'errors' => $exception->getMessage()
             ], 404);
+        } catch (Exception $ex) {
+            return response()->json([
+                'message' => $ex->getMessage(),
+            ], 500);
         }
-        return new ActorResource($actor);
+
     }
 
     /**
@@ -96,16 +112,26 @@ class ActorController extends Controller
      */
     public function update(ActorRequest $request, $id)
     {
-        $actor = Actor::find($id);
-        $actor->movies()->sync($request->movies);
-        if (!$actor) {
+        try {
+            $actor = Actor::find($id);
+            $actor->movies()->sync($request->movies);
+            if (!$actor) throw new ModelNotFoundException('model not found');
+            $actor->update($request->all());
+            return response()->json(null, 204);
+        } catch (ValidationException $exception) {
             return response()->json([
-                'error' => 404,
-                'message' => 'Not found',
+                'errors' => $exception->errors()
+            ], 422);
+        } catch (ModelNotFoundException $exception) {
+            return response()->json([
+                'errors' => $exception->getMessage()
             ], 404);
+        } catch (Exception $ex) {
+            return response()->json([
+                'message' => $ex->getMessage(),
+            ], 500);
         }
-        $actor->update($request->all());
-        return response()->json(null, 204);
+
     }
 
     /**
@@ -116,15 +142,24 @@ class ActorController extends Controller
      */
     public function destroy($id)
     {
-        $actor = Actor::find($id);
-        if (!$actor) {
+        try {
+            $actor = Actor::find($id);
+            if (!$actor) throw new ModelNotFoundException('model not found');
+            $actor->movies()->detach();
+            $actor->delete();
+            return response()->json(null, 204);
+        } catch (ValidationException $exception) {
             return response()->json([
-                'error' => 404,
-                'message' => 'Not found',
+                'errors' => $exception->errors()
+            ], 422);
+        } catch (ModelNotFoundException $exception) {
+            return response()->json([
+                'errors' => $exception->getMessage()
             ], 404);
+        } catch (Exception $ex) {
+            return response()->json([
+                'message' => $ex->getMessage(),
+            ], 500);
         }
-        $actor->movies()->detach();
-        $actor->delete();
-        return response()->json(null, 204);
     }
 }
