@@ -149,6 +149,13 @@ class UserController extends Controller
                 'message' => 'Not found',
             ], 404);
         }
+        if ($user->studios) {
+            foreach ($user->studios as $studio) {
+                $studio->user()->dissociate();
+                $studio->save();
+            }
+        }
+        $user->roles()->detach();
         $user->delete();
         return response()->json(null, 204);
     }

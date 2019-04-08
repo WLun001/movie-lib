@@ -129,6 +129,12 @@ class StudioController extends Controller
                 'message' => 'Not found',
             ], 404);
         }
+        if ($studio->movies) {
+            foreach ($studio->movies as $movie) {
+                $movie->studio()->dissociate();
+                $movie->save();
+            }
+        }
         $studio->delete();
         return response()->json(null, 204);
     }
