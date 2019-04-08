@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 
+use App\Rules\IsValidRole;
+
 class UserRequest extends ApiFormRequest
 {
     /**
@@ -26,7 +28,7 @@ class UserRequest extends ApiFormRequest
             'name' => 'required|string',
             'email' => 'required|email',
             'password' => 'required',
-            'role' => 'required|string'
+            'role' => ['required', 'string', new IsValidRole]
         ];
     }
 }

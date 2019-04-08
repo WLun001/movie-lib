@@ -8,8 +8,6 @@ use App\Http\Resources\UserResource;
 use App\User;
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Http\Exceptions\HttpResponseException;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
@@ -52,7 +50,6 @@ class UserController extends Controller
         return new UserCollection($user);
     }
 
-
     /**
      * Store a newly created resource in storage.
      *
@@ -68,11 +65,6 @@ class UserController extends Controller
                 'password' => Hash::make($request['password']),
             ]);
             $role = $request['role'];
-            if ($role != 'admin' && $role != 'staff' && $role != 'member') {
-                throw new HttpResponseException(response()->json([
-                    'errors' => 'only admin, staff, member role are allowed'
-                ], JsonResponse::HTTP_UNPROCESSABLE_ENTITY));
-            }
             Bouncer::assign($role)->to($user);
             return response()->json([
                 'id' => $user->id,
@@ -130,11 +122,6 @@ class UserController extends Controller
                 'password' => Hash::make($request['password']),
             ]);
             $role = $request['role'];
-            if ($role != 'admin' && $role != 'staff' && $role != 'member') {
-                throw new HttpResponseException(response()->json([
-                    'errors' => 'only admin, staff, member role are allowed'
-                ], JsonResponse::HTTP_UNPROCESSABLE_ENTITY));
-            }
             $user->roles()->detach();
             Bouncer::assign($role)->to($user);
             return response()->json(null, 204);
