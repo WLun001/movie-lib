@@ -19,7 +19,7 @@ class CreateMoviesTable extends Migration
             $table->integer('rating');
             $table->integer('year');
             $table->integer('duration');
-            $table->unsignedBigInteger('studio_id');
+            $table->unsignedBigInteger('studio_id')->nullable();
             $table->foreign('studio_id')->references('id')->on('studios');
             $table->timestamps();
         });

@@ -26,11 +26,9 @@ Route::middleware('api')->namespace('Auth')->prefix('auth')->group(function () {
 
 
 Route::middleware(['jwt.auth', 'can:manage-users'])->group(function () {
-
+    Route::get('/users/search', 'UserController@search');
+    Route::apiResource('users', 'UserController');
 });
-
-Route::get('/users/search', 'UserController@search');
-Route::apiResource('users', 'UserController');
 
 Route::middleware(['jwt.auth', 'can:manage-movies'])->group(function () {
     Route::apiResource('movies', 'MovieController')->only([
