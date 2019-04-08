@@ -25,6 +25,7 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
         Gate::define('update-studio', function ($user, $studio) {
+            if ($studio->user_id == null) return true;
             return $user->id == $studio->user_id;
         });
     }
