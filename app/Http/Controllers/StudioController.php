@@ -6,6 +6,8 @@ use App\Http\Requests\StudioRequest;
 use App\Http\Resources\StudioCollection;
 use App\Http\Resources\StudioResource;
 use App\Studio;
+use Exception;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -65,7 +67,11 @@ class StudioController extends Controller
         } catch (ValidationException $exception) {
             return response()->json([
                 'errors' => $exception->errors()
-            ]);
+            ], 422);
+        } catch (Exception $ex) {
+            return response()->json([
+                'message' => $ex->getMessage(),
+            ], 500);
         }
     }
 
@@ -77,14 +83,23 @@ class StudioController extends Controller
      */
     public function show($id)
     {
-        $studio = Studio::with(['movies', 'user'])->find($id);
-        if (!$studio) {
+        try {
+            $studio = Studio::with(['movies', 'user'])->find($id);
+            if (!$studio) throw new ModelNotFoundException('model not found');
+            return new StudioResource($studio);
+        } catch (ValidationException $exception) {
             return response()->json([
-                'error' => 404,
-                'message' => 'Not found',
+                'errors' => $exception->errors()
+            ], 422);
+        } catch (ModelNotFoundException $exception) {
+            return response()->json([
+                'errors' => $exception->getMessage()
             ], 404);
+        } catch (Exception $ex) {
+            return response()->json([
+                'message' => $ex->getMessage(),
+            ], 500);
         }
-        return new StudioResource($studio);
     }
 
     /**
@@ -96,22 +111,29 @@ class StudioController extends Controller
      */
     public function update(StudioRequest $request, $id)
     {
-        $studio = Studio::find($id);
-        if (Gate::allows('update-studio', $studio)) {
-            if (!$studio) {
-                return response()->json([
-                    'error' => 404,
-                    'message' => 'Not found',
-                ], 404);
+        try {
+            $studio = Studio::find($id);
+            if (Gate::allows('update-studio', $studio)) {
+                if (!$studio) throw new ModelNotFoundException('model not found');
+                $studio->update($request->all());
+                return response()->json(null, 204);
+            } else {
+                throw new Exception("You are forbidden to edit $studio->name", 403);
             }
-            $studio->update($request->all());
-            return response()->json(null, 204);
-        } else {
+        } catch (ValidationException $exception) {
             return response()->json([
-                'error' => 403,
-                'message' => "You are forbidden to edit $studio->name" ,
+                'errors' => $exception->errors()
+            ], 422);
+        } catch (ModelNotFoundException $exception) {
+            return response()->json([
+                'errors' => $exception->getMessage()
             ], 404);
+        } catch (Exception $ex) {
+            return response()->json([
+                'message' => $ex->getMessage(),
+            ], $ex->getCode() ? $ex->getCode() : 500);
         }
+
     }
 
     /**
@@ -122,20 +144,29 @@ class StudioController extends Controller
      */
     public function destroy($id)
     {
-        $studio = Studio::find($id);
-        if (!$studio) {
-            return response()->json([
-                'error' => 404,
-                'message' => 'Not found',
-            ], 404);
-        }
-        if ($studio->movies) {
-            foreach ($studio->movies as $movie) {
-                $movie->studio()->dissociate();
-                $movie->save();
+        try {
+            $studio = Studio::find($id);
+            if (!$studio) throw new ModelNotFoundException('model not found');
+            if ($studio->movies) {
+                foreach ($studio->movies as $movie) {
+                    $movie->studio()->dissociate();
+                    $movie->save();
+                }
             }
+            $studio->delete();
+            return response()->json(null, 204);
+        } catch (ValidationException $exception) {
+            return response()->json([
+                'errors' => $exception->errors()
+            ], 422);
+        } catch (ModelNotFoundException $exception) {
+            return response()->json([
+                'errors' => $exception->getMessage()
+            ], 404);
+        } catch (Exception $ex) {
+            return response()->json([
+                'message' => $ex->getMessage(),
+            ], 500);
         }
-        $studio->delete();
-        return response()->json(null, 204);
     }
 }
