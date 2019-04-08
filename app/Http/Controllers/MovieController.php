@@ -6,6 +6,8 @@ use App\Http\Requests\MovieRequest;
 use App\Http\Resources\MovieCollection;
 use App\Http\Resources\MovieResource;
 use App\Movie;
+use Exception;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Validation\ValidationException;
@@ -69,7 +71,11 @@ class MovieController extends Controller
         } catch (ValidationException $exception) {
             return response()->json([
                 'errors' => $exception->errors()
-            ]);
+            ], 422);
+        } catch (Exception $ex) {
+            return response()->json([
+                'message' => $ex->getMessage(),
+            ], 500);
         }
     }
 
@@ -81,14 +87,23 @@ class MovieController extends Controller
      */
     public function show($id)
     {
-        $movie = Movie::with(['actors', 'studio'])->find($id);
-        if (!$movie) {
+        try {
+            $movie = Movie::with(['actors', 'studio'])->find($id);
+            if (!$movie) throw new ModelNotFoundException('model not found');
+            return new MovieResource($movie);
+        } catch (ValidationException $exception) {
             return response()->json([
-                'error' => 404,
-                'message' => 'Not found',
+                'errors' => $exception->errors()
+            ], 422);
+        } catch (ModelNotFoundException $exception) {
+            return response()->json([
+                'errors' => $exception->getMessage()
             ], 404);
+        } catch (Exception $ex) {
+            return response()->json([
+                'message' => $ex->getMessage(),
+            ], 500);
         }
-        return new MovieResource($movie);
     }
 
     /**
@@ -100,16 +115,26 @@ class MovieController extends Controller
      */
     public function update(MovieRequest $request, $id)
     {
-        $movie = Movie::find($id);
-        $movie->actors()->sync($request->actors);
-        if (!$movie) {
+        try {
+            $movie = Movie::find($id);
+            $movie->actors()->sync($request->actors);
+            if (!$movie) throw new ModelNotFoundException('model not found');
+            $movie->update($request->all());
+            return response()->json(null, 204);
+        } catch (ValidationException $exception) {
             return response()->json([
-                'error' => 404,
-                'message' => 'Not found',
+                'errors' => $exception->errors()
+            ], 422);
+        } catch (ModelNotFoundException $exception) {
+            return response()->json([
+                'errors' => $exception->getMessage()
             ], 404);
+        } catch (Exception $ex) {
+            return response()->json([
+                'message' => $ex->getMessage(),
+            ], 500);
         }
-        $movie->update($request->all());
-        return response()->json(null, 204);
+
     }
 
     /**
@@ -120,15 +145,24 @@ class MovieController extends Controller
      */
     public function destroy($id)
     {
-        $movie = Movie::find($id);
-        if (!$movie) {
+        try {
+            $movie = Movie::find($id);
+            if (!$movie) throw new ModelNotFoundException('model not found');
+            $movie->actors()->detach();
+            $movie->delete();
+            return response()->json(null, 204);
+        } catch (ValidationException $exception) {
             return response()->json([
-                'error' => 404,
-                'message' => 'Not found',
+                'errors' => $exception->errors()
+            ], 422);
+        } catch (ModelNotFoundException $exception) {
+            return response()->json([
+                'errors' => $exception->getMessage()
             ], 404);
+        } catch (Exception $ex) {
+            return response()->json([
+                'message' => $ex->getMessage(),
+            ], 500);
         }
-        $movie->actors()->detach();
-        $movie->delete();
-        return response()->json(null, 204);
     }
 }
