@@ -91,10 +91,6 @@ class MovieController extends Controller
             $movie = Movie::with(['actors', 'studio'])->find($id);
             if (!$movie) throw new ModelNotFoundException('model not found');
             return new MovieResource($movie);
-        } catch (ValidationException $exception) {
-            return response()->json([
-                'errors' => $exception->errors()
-            ], 422);
         } catch (ModelNotFoundException $exception) {
             return response()->json([
                 'errors' => $exception->getMessage()
@@ -151,10 +147,6 @@ class MovieController extends Controller
             $movie->actors()->detach();
             $movie->delete();
             return response()->json(null, 204);
-        } catch (ValidationException $exception) {
-            return response()->json([
-                'errors' => $exception->errors()
-            ], 422);
         } catch (ModelNotFoundException $exception) {
             return response()->json([
                 'errors' => $exception->getMessage()

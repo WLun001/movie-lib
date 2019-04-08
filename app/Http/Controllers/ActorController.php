@@ -87,10 +87,6 @@ class ActorController extends Controller
             $actor = Actor::with('movies')->find($id);
             if (!$actor) throw new ModelNotFoundException('model not found');
             return new ActorResource($actor);
-        } catch (ValidationException $exception) {
-            return response()->json([
-                'errors' => $exception->errors()
-            ], 422);
         } catch (ModelNotFoundException $exception) {
             return response()->json([
                 'errors' => $exception->getMessage()
@@ -148,10 +144,6 @@ class ActorController extends Controller
             $actor->movies()->detach();
             $actor->delete();
             return response()->json(null, 204);
-        } catch (ValidationException $exception) {
-            return response()->json([
-                'errors' => $exception->errors()
-            ], 422);
         } catch (ModelNotFoundException $exception) {
             return response()->json([
                 'errors' => $exception->getMessage()

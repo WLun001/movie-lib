@@ -87,10 +87,6 @@ class StudioController extends Controller
             $studio = Studio::with(['movies', 'user'])->find($id);
             if (!$studio) throw new ModelNotFoundException('model not found');
             return new StudioResource($studio);
-        } catch (ValidationException $exception) {
-            return response()->json([
-                'errors' => $exception->errors()
-            ], 422);
         } catch (ModelNotFoundException $exception) {
             return response()->json([
                 'errors' => $exception->getMessage()
@@ -155,10 +151,6 @@ class StudioController extends Controller
             }
             $studio->delete();
             return response()->json(null, 204);
-        } catch (ValidationException $exception) {
-            return response()->json([
-                'errors' => $exception->errors()
-            ], 422);
         } catch (ModelNotFoundException $exception) {
             return response()->json([
                 'errors' => $exception->getMessage()
