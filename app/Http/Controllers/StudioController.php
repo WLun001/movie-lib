@@ -27,7 +27,7 @@ class StudioController extends Controller
     }
 
     /**
-     * Search studios based on studio name or/and movie name
+     * Search studios based on studio name or/and movie name or/and user name
      *
      * @param Request $request
      * @return StudioCollection
@@ -36,6 +36,7 @@ class StudioController extends Controller
     {
         $name = $request->input('name');
         $movie = $request->input('movie');
+        $user = $request->input('user');
 
         $studio = Studio::with(['movies', 'user'])
             ->when($name, function ($query) use ($name) {
@@ -43,6 +44,9 @@ class StudioController extends Controller
             })
             ->whereHas('movies', function ($query) use ($movie) {
                 return $query->where('name', 'like', "%$movie%");
+            })
+            ->whereHas('user', function ($query) use ($user) {
+                return $query->where('name', 'like', "%$user%");
             })
             ->get();
 

@@ -18,7 +18,7 @@ class StudioResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'user_id' => new UserResource($this->whenLoaded('user')),
+            'user' => new UserResourceSimplified($this->whenLoaded('user')),
             'movies' => new MovieCollection($this->whenLoaded('movies')),
         ];
     }
